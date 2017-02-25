@@ -1,0 +1,14 @@
+version: '2'
+services:
+    devapp-app:
+        image: devapp
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://devapp-mysql:3306/devapp?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    devapp-mysql:
+        extends:
+            file: mysql.yml
+            service: devapp-mysql
